@@ -1,20 +1,48 @@
 class WireframesController < ApplicationController
   
   Place.destroy_all
+  Entry.destroy_all
 
-  Place= ["Mexico City", "Charleston", "Beijing", "Amsterdam"]
+  mexico = Place.new
+  mexico["name"] = "Mexico City"
+  mexico.save
+  
+  charleston = Place.new
+  charleston["name"] = "Charleston"
+  charleston.save
+  
+  beijing = Place.new
+  beijing["name"] = "Beijing"
+  beijing.save
+  
+  amsterdam = Place.new
+  amsterdam["name"] = "Amsterdam"
+  amsterdam.save
+
+  # entry = Entry.new
+  # entry["title"] = "Ate tacos"
+  # entry.save
+  
+  # entry = Entry.new
+  # entry["description"] = "happy"
+  # entry.save
+
+  # entry = Entry.new
+  # entry["posted_on"] = "2022-01-02"
+  # entry.save
+
+  # entry = Entry.new
+  # entry["place_id"] = mexico["id"]
+  # entry.save
 
   def index
-    @fillings = Place 
+    @fillings = Place.all 
     # ["Mexico City", "Charleston", "Beijing", "Amsterdam"]
   end
 
   def show
-        # find a Company
-    @fillings = Place.find_by({ "id" => params["id"] })
-        # find Contacts for the Company
-    @fillings = Entry.where({ "place_id" => @fillings["id"] })
-        # render companies/show view with details about Company
+    @filling = Place.find_by(name: params["name"])
+    @entries = Entry.where({ "place_id" => @filling["id"] })
   end
 
   def new
@@ -26,9 +54,7 @@ class WireframesController < ApplicationController
     @fillings = Place.new
 
     # assign user-entered form data to Post's columns
-    @post["author"] = params["author"]
-    @post["body"] = params["body"]
-    @post["imaage"] = params["imaage"]
+    @fillings["name"] = params["name"]
 
     # save Post row
     @fillings.save

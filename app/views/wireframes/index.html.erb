@@ -3,8 +3,10 @@
 <ul>
   <% for filling in @fillings %>
     <li>
-      <a href="/wireframes/<%= filling %>">
-    <li><%= filling %></li>
+      <a href="/wireframes/<%= filling["name"] %>">
+      <%= filling["name"] %>
+      </a>
+    </li>
   <% end %>
 </ul>
 

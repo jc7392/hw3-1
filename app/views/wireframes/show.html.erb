@@ -2,19 +2,12 @@
 
 <h1><%= @filling["name"]%></h1>
 
-<h2><%= @company["city"]%>, <%= @company["state"]%></h2>
-
-<h3>Contacts</h3>
-
 <ul>
-  <li>Michael Scott</li>
-  <li>Dwight Schrute</li>
+  <% for entry in @entries %>
+    <h2><%= entry["title"]%></h2>
+    <h3><%= entry["posted_on"]%></h3>
+    <h4><%= entry["description"]%></h4>
+  <% end %>
 </ul>
 
-<p>
-  <a href="">New Contact</a>
-</p>
-
-<p>
-  <a href="/companies">Back to All Companies</a>
-</p>
+<p><a href="/wireframes/new">New Post</a></p>
