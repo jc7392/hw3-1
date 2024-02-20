@@ -41,24 +41,19 @@ class WireframesController < ApplicationController
   end
 
   def show
-    @filling = Place.find_by(name: params["name"])
+    @filling = Place.find_by({"id" => params["id"]})
     @entries = Entry.where({ "place_id" => @filling["id"] })
   end
 
   def new
-    # render posts/new view with new Post form
+
   end
 
   def create
-    # start with a new Post
-    @fillings = Place.new
-
-    # assign user-entered form data to Post's columns
-    @fillings["name"] = params["name"]
-
-    # save Post row
-    @fillings.save
-
+    @filling = Place.new
+    @filling["name"] = params["name"]
+    # save place
+    @filling.save
     # redirect user
     redirect_to "/wireframes"
   end
